@@ -76,6 +76,14 @@ alter table proposicoes
 alter table proposicoes
     add column uri_documento text default null;
 
+create table autor_proposicoes(
+    id_proposicao bigint,
+    id_deputado bigint,
+    foreign key id_deputado_fk (id_deputado) references deputado(id),
+    foreign key id_proposicao_fk (id_proposicao) references proposicoes(id),
+    primary key (id_proposicao, id_deputado)
+);
+
 
 GRANT ALL PRIVILEGES ON tcc.* TO 'docker'@'%';
 
