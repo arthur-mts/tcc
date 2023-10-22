@@ -8,8 +8,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 'root'
       MYSQL_USER: 'docker'
-      MYSQL_PASS: 'docker'
+      MYSQL_PASSWORD: 'docker'
     volumes:
       - ./data:/var/lib/mysql
+      - ./scripts:/docker-entrypoint-initdb.d:rw
 volumes:
   data:

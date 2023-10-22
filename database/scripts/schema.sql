@@ -1,3 +1,5 @@
+create database tcc;
+use tcc;
 create table partido
 (
     id       bigint primary key,
@@ -25,12 +27,12 @@ create table proposicoes
     tipo              varchar(5) not null,
     ano               int        not null,
     ementa            text       not null,
-    ementa_detalhada  text       not null,
+    ementa_detalhada  text       ,
     uri_documento     text       not null, ## Campo uri_inteiro_teor do documento
     data_apresentacao date,
-    ultimo_relator_id bigint     not null,
+    ultimo_relator_id bigint     ,
     foreign key id_ultimo_relator_fk (ultimo_relator_id) references deputado (id),
-    situacao          text       not null  ## Na API é retornado o campo codSituacao. A partir desse codigo irei pegar o texto e colocar aqui
+    situacao          text        ## Na API é retornado o campo codSituacao. A partir desse codigo irei pegar o texto e colocar aqui
 );
 
 ## A partir do campo keywords retornado na API preencher essa tabela
@@ -63,3 +65,6 @@ create table tesauro_termos(
     foreign key subcategoria_id_fk (subcategoria_id) references tesauro_subcategorias(id),
     valor text not null
 );
+
+GRANT ALL PRIVILEGES ON tcc.* TO 'docker'@'%';
+
