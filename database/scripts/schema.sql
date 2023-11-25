@@ -84,6 +84,11 @@ create table autor_proposicoes(
     primary key (id_proposicao, id_deputado)
 );
 
+create table classificacao_proposicoes(
+    id_proposicao bigint not null,
+    classificacao text not null,
+    foreign key id_proposicao_fk (id_proposicao) references proposicoes(id)
+);
 
 GRANT ALL PRIVILEGES ON tcc.* TO 'docker'@'%';
 
