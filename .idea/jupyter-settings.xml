@@ -20,8 +20,9 @@
         <entry key="$PROJECT_DIR$/.idea/tcc.iml">
           <value>
             <JupyterConnectionParameters>
+              <option name="argv" value="notebook --no-browser --NotebookApp.iopub_data_rate_limit=1.0e10" />
               <option name="managed" value="true" />
-              <option name="sdkName" value="Python 3.8 (scripts)" />
+              <option name="sdkName" value="Python 3.11" />
             </JupyterConnectionParameters>
           </value>
         </entry>

@@ -1,6 +1,0 @@
-jupyterlab
-pandas
-mysql-connector-python
-unidecode
-sqlalchemy
-pymysql

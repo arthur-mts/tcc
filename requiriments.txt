@@ -1,0 +1,17 @@
+jupyterlab
+pandas
+mysql-connector-python
+unidecode
+sqlalchemy
+pymysql
+datasets
+ipywidgets
+psycopg2
+sklearn
+nltk
+PyPDF2
+pdfminer
+textract
+pytesseract
+opencv-python
+swifter
