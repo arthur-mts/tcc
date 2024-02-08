@@ -15,3 +15,7 @@ textract
 pytesseract
 opencv-python
 swifter
+unidecode
+scikit-multilearn
+scikit-learn
+seaborn
