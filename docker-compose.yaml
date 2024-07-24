@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: pg_database
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: 'docker'
+      POSTGRES_PASSWORD: 'docker'
+      POSTGRES_DB: 'tcc'
+    volumes:
+      - ./database/dumps:/docker-entrypoint-initdb.d
+  model:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - ./output:/output

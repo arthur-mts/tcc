@@ -7,7 +7,6 @@ pymysql
 datasets
 ipywidgets
 psycopg2
-sklearn
 nltk
 PyPDF2
 pdfminer
@@ -18,4 +17,5 @@ swifter
 unidecode
 scikit-multilearn
 scikit-learn
-seaborn=0.13.0
+seaborn==0.13.0
+fasttext==0.6.0
