@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: 'docker'
+      POSTGRES_PASSWORD: 'docker'
+      POSTGRES_DB: 'tcc'
+    volumes:
+      - ./database/dumps:/docker-entrypoint-initdb.d
+  jupyter:
+    ports:
+      - "8888:8888"
+    depends_on:
+      - postgres
+    volumes:
+      - ./fasttext:/app/fasttext
+    build:
+      context: .
+      dockerfile: jupyter-local.Dockerfile

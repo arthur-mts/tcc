@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    container_name: postgres
+    ports:
+      - 5432
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: 'docker'
+      POSTGRES_PASSWORD: 'docker'
+      POSTGRES_DB: 'tcc'
+    volumes:
+      - ./database/dumps:/docker-entrypoint-initdb.d
+  model:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: "service:postgres"
+    depends_on:
+      - postgres
+    volumes:
+      - app-volume:/usr/src/app/modelo/output
+  server:
+    build:
+      context: .
+      dockerfile: ngnix.Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      model:
+        condition: service_completed_successfully
+
+    volumes:
+      - app-volume:/usr/src/app
+
+
+volumes:
+  app-volume:
