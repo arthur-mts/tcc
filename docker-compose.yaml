@@ -1,9 +1,12 @@
 services:
   postgres:
     image: postgres:latest
-    container_name: pg_database
+    hostname: postgres
+    container_name: postgres
     ports:
-      - 5432:5432
+      - 5432
+    expose:
+      - 5432
     environment:
       POSTGRES_USER: 'docker'
       POSTGRES_PASSWORD: 'docker'
@@ -14,7 +17,24 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    network_mode: "service:postgres"
     depends_on:
       - postgres
     volumes:
-      - ./output:/output
+      - app-volume:/usr/src/app/modelo/output
+  server:
+    build:
+      context: .
+      dockerfile: ngnix.Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      model:
+        condition: service_completed_successfully
+
+    volumes:
+      - app-volume:/usr/src/app
+
+
+volumes:
+  app-volume:
