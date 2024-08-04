@@ -1,10 +1,6 @@
 FROM python:latest
-#FROM jupyter/scipy-notebook:ubuntu-22.04
 WORKDIR /app
 
-#RUN apk update
-#RUN apk add git
-#RUN apt install -y git
 RUN apt-get update
 RUN apt-get install -y postgresql
 RUN pip3 install notebook
