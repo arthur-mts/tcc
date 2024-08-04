@@ -16,3 +16,14 @@ jupyer-local:
 	docker compose -f docker-compose-jupyter-local.yaml up
 jupyer-local-down:
 	docker compose -f docker-compose-jupyter-local.yaml down
+
+database:
+	docker container run --rm \
+    -e POSTGRES_USER='docker' \
+    -e POSTGRES_PASSWORD='docker' \
+    -e POSTGRES_DB='tcc' \
+    -p 5432:5432 \
+    --hostname postgres \
+    --name postgres \
+    -v ./database/dumps:/docker-entrypoint-initdb.d \
+    postgres:latest
